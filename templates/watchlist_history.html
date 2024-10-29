@@ -1,0 +1,70 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist History</title>
+</head>
+<body>
+    <h1>Watchlist History</h1>
+
+    {% if history %}
+            <ul>
+                <li>Product Title</li>
+                <li>Product URL</li>
+                <li>Price at Notification</li>
+                <li>Email</li>
+                <li>Date Notified</li>
+            </ul>
+            {% for item in history %}
+                <ul>
+                    <li>{{ item.product_title }}</li>
+                    <li><a href="{{ item.product_url }}" target="_blank">View Product</a></li>
+                    <li>{{ item.price_at_notification }}</li>
+                    <li>{{ item.email }}</li>
+                    <li>{{ item.date_notified }}</li>
+                </ul>
+            {% endfor %}
+    {% else %}
+        <p>No history available.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center text-warning mb-4">Watchlist History</h1>
+
+        {% if history %}
+            <ul class="list-group">
+                {% for item in history %}
+                    <li class="list-group-item">
+                        <h4 class="text-info">{{ item.product_title }}</h4>
+                        <a href="{{ item.product_url }}" target="_blank" class="btn btn-outline-primary mb-2">View Product</a>
+                        <p><strong>Price at Notification:</strong> ₹{{ item.price_at_notification }}</p>
+                        <p><strong>Email:</strong> {{ item.email }}</p>
+                        <p><strong>Date Notified:</strong> {{ item.date_notified }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="alert alert-warning text-center">No history available.</p>
+        {% endif %}
+
+        <div class="d-flex justify-content-end mt-3">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

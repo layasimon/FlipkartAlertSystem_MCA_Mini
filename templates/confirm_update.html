@@ -1,0 +1,11 @@
+<h2>Confirm Update</h2>
+<p>The product URL is already in your watchlist with a trigger price of 
+   {{ existing_entry.trigger_price }}.</p>
+
+<p>Do you want to replace it with the new trigger price: {{ new_trigger_price }}?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" name="confirm" value="yes">Yes</button>
+    <button type="submit" name="confirm" value="no">No</button>
+</form>
